@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>Circle of 10 City</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0" />
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 90%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body id="map-container">
+    <center>
+      <h3>10 City in Central Java
+      </h3>
+    </center>
+    <div id="map"></div>
+    <script>
+      var citymap = {
+        sukoharjo: {
+          center: {lat: -7.6747287, lng: 110.791454},
+          population:  824238	
+        },
+        pekalongan: {
+          center: {lat: -6.8958555, lng: 109.6394837 },
+          population: 891442  
+        },
+        pemalang: {
+          center: {lat: -7.0097774, lng: 109.1121839},
+          population: 1320000	
+        },
+        pati: {
+          center: {lat: -6.7521643, lng: 111.0316679},
+          population: 1189000	
+        },
+       kudus: {
+          center: {lat: -6.8009597, lng: 110.8229023},
+          population: 764606	
+        },
+       klaten: {
+          center: {lat: -7.7169304, lng: 110.5837189},
+          population: 1165789	
+        },
+        magelang: {
+          center: {lat: -7.5132034, lng: 110.1046804},
+          population: 1204974 
+        },
+       kendal: {
+          center: {lat:-7.0200449, lng: 109.9993108},
+          population: 899211	
+        },
+       kebumen: {
+          center: {lat: -7.6435781, lng: 109.4692354},
+          population: 1241437	 
+        },
+        karanganyar: {
+          center: {lat: -7.6192357, lng: 110.8113359},
+          population: 750	
+        }
+      };
+      function initMap() {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: -6.9646166, lng: 109.0019372},
+          mapTypeId: 'terrain'
+        });
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        for (var city in citymap) {
+          // Add the circle for this city to the map.
+          var cityCircle = new google.maps.Circle({
+            strokeColor: '#33691E',
+            strokeOpacity: 0.5,
+            strokeWeight: 1,
+            fillColor: '#76FF03',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+            radius: Math.sqrt(citymap[city].population) * 5
+          });
+        }
+      }
+    </script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD7GN1tpRyxp6-xYcUGh3PnAxh4GnasFY&callback=initMap">
+    </script>
+  </body>
+</html>
